@@ -1,0 +1,70 @@
+{% macro storyFigure(image) %}
+  <figure{% if image.id %} id="{{ image.id }}"{% endif %} class="story-figure{% if image.layout %} story-figure--{{ image.layout }}{% endif %}">
+    <div class="story-figure-media">
+      {% if image.fullSizeSrc %}<a class="story-figure-link" href="{{ image.fullSizeSrc | url }}" aria-label="{{ image.fullSizeLabel or 'Open full-resolution image' }}">{% endif %}
+      <img
+        src="{{ image.src | url }}"
+        alt="{{ image.alt }}"
+        width="{{ image.width }}"
+        height="{{ image.height }}"
+        loading="{% if image.loading %}{{ image.loading }}{% else %}lazy{% endif %}"
+        decoding="async"
+      >
+      {% if image.fullSizeSrc %}</a>{% endif %}
+    </div>
+    {% if image.caption or image.credit %}
+      <figcaption>
+        {% if image.caption %}<span>{{ image.caption }}</span>{% endif %}
+        {% if image.credit %}<small>{{ image.credit }}</small>{% endif %}
+      </figcaption>
+    {% endif %}
+  </figure>
+{% endmacro %}
+
+{% macro evidenceFigure(figure) -%}
+  <figure{% if figure.id %} id="{{ figure.id }}"{% endif %} class="story-figure story-figure--evidence">
+    <div class="musicfinder-evidence-grid">
+      <section class="musicfinder-evidence-panel musicfinder-evidence-panel--source" aria-labelledby="{{ figure.id }}-source-heading">
+        <header class="musicfinder-evidence-header">
+          <h3 id="{{ figure.id }}-source-heading">Source 001 / authentic crop</h3>
+          <a href="{{ figure.sourceImage.fullSizeSrc | url }}" aria-label="{{ figure.sourceImage.fullSizeLabel }}">Open crop <span aria-hidden="true">↗</span></a>
+        </header>
+        <a class="musicfinder-evidence-image-link" href="{{ figure.sourceImage.fullSizeSrc | url }}" aria-label="{{ figure.sourceImage.fullSizeLabel }}">
+          <img
+            src="{{ figure.sourceImage.src | url }}"
+            alt="{{ figure.sourceImage.alt }}"
+            width="{{ figure.sourceImage.width }}"
+            height="{{ figure.sourceImage.height }}"
+            loading="lazy"
+            decoding="async"
+          >
+        </a>
+      </section>
+      <section class="musicfinder-evidence-panel musicfinder-evidence-panel--results" aria-labelledby="{{ figure.id }}-results-heading">
+        <header class="musicfinder-evidence-header">
+          <h3 id="{{ figure.id }}-results-heading">Matching CSV records</h3>
+          <a href="{{ figure.csvSrc | url }}" aria-label="Open the exact five-row CSV excerpt">Open excerpt <span aria-hidden="true">↗</span></a>
+        </header>
+        <ol class="musicfinder-result-list" role="list">
+          {%- for row in figure.rows %}
+            <li class="musicfinder-result-row">
+              <div class="musicfinder-result-title">
+                <strong>{{ row.song }}</strong>
+                <span>{{ row.artist }}</span>
+              </div>
+              <dl class="musicfinder-result-fields">
+                <div><dt>Source</dt><dd>{{ row.sourceType }}</dd></div>
+                <div><dt>Confidence</dt><dd>{{ row.confidence }}</dd></div>
+              </dl>
+              <a class="musicfinder-result-url" href="{{ row.youtubeUrl }}">{{ row.youtubeUrl }}</a>
+            </li>
+          {%- endfor %}
+        </ol>
+      </section>
+    </div>
+    <figcaption>
+      <span>{{ figure.caption }}</span>
+      <small>{{ figure.credit }}</small>
+    </figcaption>
+  </figure>
+{%- endmacro %}

@@ -1,0 +1,12 @@
+node_modules/
+_site/
+.DS_Store
+design/references/
+references/design/
+.env
+.env.*
+!.env.example
+*.log
+npm-debug.log*
+.tmp/
+tmp/

@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+title: Notes
+description: Short observations, experiments, and progress updates from Ellie.
+currentPage: notes
+permalink: /notes/
+---
+<div class="shell page-shell listing-page">
+  <header class="page-heading">
+    <p class="eyebrow">Writing</p>
+    <h1>Notes</h1>
+    <p class="lede">Short observations, experiments, and progress updates about design, making, and AI-assisted development.</p>
+  </header>
+
+  {% if collections.note and collections.note.length %}
+    <ol class="note-list" role="list">
+      {% for note in collections.note | reverse %}
+        <li>
+          <a href="{{ note.url | url }}">
+            <span>{{ note.data.title }}</span>
+            <time datetime="{{ note.date | htmlDateString }}">{{ note.data.dateLabel }}</time>
+          </a>
+        </li>
+      {% endfor %}
+    </ol>
+  {% else %}
+    <p class="empty-state">No notes published.</p>
+  {% endif %}
+</div>

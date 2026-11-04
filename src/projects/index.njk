@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+title: Projects
+description: Substantial product stories by Ellie.
+currentPage: projects
+permalink: /projects/
+---
+<div class="shell page-shell listing-page">
+  <header class="page-heading">
+    <p class="eyebrow">Selected work</p>
+    <h1>Projects</h1>
+    <p class="lede">Substantial stories about designing and building independent software.</p>
+  </header>
+
+  <ol class="project-list project-list-large" role="list">
+    {% for project in projects %}
+      <li class="project-row">
+        <span class="project-index">0{{ loop.index }}</span>
+        <h2><a href="{{ project.url | url }}">{{ project.name }}</a></h2>
+        <span class="status-label">{{ project.type }}</span>
+      </li>
+    {% endfor %}
+  </ol>
+</div>
