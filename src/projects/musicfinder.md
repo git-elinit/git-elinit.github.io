@@ -155,7 +155,7 @@ And that's the next part of this journey.
 
 *— Ellie*
 
-<a class="project-source-card" href="https://github.com/git-elinit/music-finder" aria-label="Open the MusicFinder repository on GitHub">
+<a class="project-source-card" href="https://github.com/git-elinit/musicfinder-agent" aria-label="Open the MusicFinder repository on GitHub">
   <span class="project-source-card__label">GitHub / Repository</span>
   <strong>Want to try MusicFinder?</strong>
   <span class="project-source-card__arrow" aria-hidden="true">↗</span>
