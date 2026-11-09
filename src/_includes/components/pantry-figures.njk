@@ -1,0 +1,100 @@
+{% macro appFigure(figure) -%}
+<figure id="{{ figure.id }}" class="story-figure story-figure--wide pantry-figure pantry-figure--app">
+<div class="pantry-app-showcase">
+<section class="pantry-phone-panel pantry-phone-panel--primary" aria-labelledby="{{ figure.id }}-primary">
+<h3 id="{{ figure.id }}-primary">{{ figure.primary.label }}</h3>
+<a class="pantry-phone-link" href="{{ figure.primary.fullSizeSrc | url }}" aria-label="{{ figure.primary.fullSizeLabel }}"><img src="{{ figure.primary.src | url }}" alt="{{ figure.primary.alt }}" width="{{ figure.primary.width }}" height="{{ figure.primary.height }}" loading="lazy" decoding="async"></a>
+</section>
+<section class="pantry-phone-panel pantry-phone-panel--secondary" aria-labelledby="{{ figure.id }}-secondary">
+<h3 id="{{ figure.id }}-secondary">{{ figure.secondary.label }}</h3>
+<a class="pantry-phone-link" href="{{ figure.secondary.fullSizeSrc | url }}" aria-label="{{ figure.secondary.fullSizeLabel }}"><img src="{{ figure.secondary.src | url }}" alt="{{ figure.secondary.alt }}" width="{{ figure.secondary.width }}" height="{{ figure.secondary.height }}" loading="lazy" decoding="async"></a>
+</section>
+<div class="pantry-figure-annotation" aria-hidden="true"><span>REAL APP</span><b>RUNNING ON IPHONE</b><span>ISOLATED DEMO DATA</span></div>
+</div>
+<figcaption><span>{{ figure.caption }}</span><small>{{ figure.credit }}</small></figcaption>
+</figure>
+{%- endmacro %}
+
+{% macro featureIndex(features) -%}
+<section class="pantry-feature-index" aria-labelledby="pantry-feature-index-title">
+<header class="pantry-feature-index__header">
+<span class="pantry-feature-index__kicker">Current app / Verified implementation</span>
+<h2 id="pantry-feature-index-title">{{ features.title }}</h2>
+<p>{{ features.introduction }}</p>
+</header>
+<ol class="pantry-feature-index__list" role="list">
+{%- for feature in features.items %}
+<li>
+<div class="pantry-feature-index__marker"><span aria-hidden="true">{{ feature.icon }}</span><small>{{ feature.index }}</small></div>
+<div class="pantry-feature-index__copy"><h3>{{ feature.title }}</h3><p>{{ feature.description }}</p><span class="pantry-feature-index__status">{{ feature.status }}</span></div>
+</li>
+{%- endfor %}
+</ol>
+</section>
+{%- endmacro %}
+
+{% macro workflowFigure(figure) -%}
+<figure id="{{ figure.id }}" class="story-figure story-figure--wide pantry-figure pantry-figure--workflow">
+<div class="pantry-workflow">
+<header class="pantry-technical-header"><span>{{ figure.label }}</span><b>Feedback loop / Episode 02</b></header>
+<ol class="pantry-workflow-list" role="list">
+{%- for step in figure.steps %}
+<li><span class="pantry-step-index">{{ step.index }}</span><strong>{{ step.title }}</strong><p>{{ step.detail }}</p></li>
+{%- endfor %}
+</ol>
+<p class="pantry-loop-note"><span aria-hidden="true">↶</span> Feedback returns to the designer, then the cycle repeats.</p>
+</div>
+<figcaption><span>{{ figure.caption }}</span><small>{{ figure.credit }}</small></figcaption>
+</figure>
+{%- endmacro %}
+
+{% macro comparisonFigure(figure) -%}
+<figure id="{{ figure.id }}" class="story-figure story-figure--wide pantry-figure pantry-figure--comparison pantry-figure--{{ figure.layout }}">
+<div class="pantry-comparison-grid">
+<section class="pantry-comparison-panel" aria-labelledby="{{ figure.id }}-left">
+<header class="pantry-evidence-header"><h3 id="{{ figure.id }}-left">{{ figure.left.label }}</h3><a href="{{ figure.left.fullSizeSrc | url }}" aria-label="{{ figure.left.fullSizeLabel }}">Open <span aria-hidden="true">↗</span></a></header>
+<a class="pantry-comparison-link" href="{{ figure.left.fullSizeSrc | url }}" aria-label="{{ figure.left.fullSizeLabel }}"><img src="{{ figure.left.src | url }}" alt="{{ figure.left.alt }}" width="{{ figure.left.width }}" height="{{ figure.left.height }}" loading="lazy" decoding="async"></a>
+</section>
+<section class="pantry-comparison-panel" aria-labelledby="{{ figure.id }}-right">
+<header class="pantry-evidence-header"><h3 id="{{ figure.id }}-right">{{ figure.right.label }}</h3><a href="{{ figure.right.fullSizeSrc | url }}" aria-label="{{ figure.right.fullSizeLabel }}">Open <span aria-hidden="true">↗</span></a></header>
+<a class="pantry-comparison-link" href="{{ figure.right.fullSizeSrc | url }}" aria-label="{{ figure.right.fullSizeLabel }}"><img src="{{ figure.right.src | url }}" alt="{{ figure.right.alt }}" width="{{ figure.right.width }}" height="{{ figure.right.height }}" loading="lazy" decoding="async"></a>
+</section>
+</div>
+<figcaption><span>{{ figure.caption }}</span><small>{{ figure.credit }}</small></figcaption>
+</figure>
+{%- endmacro %}
+
+{% macro timelineFigure(figure) -%}
+<figure id="{{ figure.id }}" class="story-figure story-figure--wide pantry-figure pantry-figure--timeline">
+<div class="pantry-timeline">
+<header class="pantry-technical-header"><span>{{ figure.label }}</span><b>Interaction / Swipe actions</b></header>
+<ol class="pantry-timeline-list" role="list">
+{%- for step in figure.steps %}
+<li><span class="pantry-step-index">{{ step.index }}</span><strong>{{ step.title }}</strong><p>{{ step.detail }}</p><small>{{ step.reference }}</small></li>
+{%- endfor %}
+</ol>
+</div>
+<figcaption><span>{{ figure.caption }}</span><small>{{ figure.credit }}</small></figcaption>
+</figure>
+{%- endmacro %}
+
+{% macro observationFigure(figure) -%}
+<figure id="{{ figure.id }}" class="story-figure story-figure--wide pantry-figure pantry-figure--observation">
+<div class="pantry-observation-grid">
+<section class="pantry-observation-image" aria-labelledby="{{ figure.id }}-image">
+<h3 id="{{ figure.id }}-image">{{ figure.label }}</h3>
+<a class="pantry-phone-link" href="{{ figure.image.fullSizeSrc | url }}" aria-label="{{ figure.image.fullSizeLabel }}"><img src="{{ figure.image.src | url }}" alt="{{ figure.image.alt }}" width="{{ figure.image.width }}" height="{{ figure.image.height }}" loading="lazy" decoding="async"></a>
+</section>
+<section class="pantry-observation-notes" aria-label="Recorded explanation">
+<span class="pantry-observation-kicker">Codex becomes a user</span>
+<dl>
+{%- for fact in figure.facts %}
+<div><dt>{{ fact.label }}</dt><dd>{{ fact.value }}</dd></div>
+{%- endfor %}
+</dl>
+<p>One real decision during one documentation session.</p>
+</section>
+</div>
+<figcaption><span>{{ figure.caption }}</span><small>{{ figure.credit }}</small></figcaption>
+</figure>
+{%- endmacro %}
