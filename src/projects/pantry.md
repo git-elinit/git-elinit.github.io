@@ -15,6 +15,25 @@ bodyClass: article-page pantry-article-page
 
 *Episode 02 — Pantry / An experiment in designing with ChatGPT and Codex.*
 
+<figure class="pantry-product-hero" aria-labelledby="pantry-product-hero-caption">
+  <div class="pantry-product-hero__header">
+    <span class="pantry-product-hero__identity">
+      <img src="{{ '/assets/images/brand/pantry-icon.webp' | url }}" alt="" width="256" height="256" decoding="async">
+      <span>Episode 02 / Pantry</span>
+    </span>
+    <span>Verified captures / 002</span>
+  </div>
+  <div class="pantry-product-hero__stage">
+    <span class="pantry-product-hero__orbit" aria-hidden="true"></span>
+    <img class="pantry-product-hero__device pantry-product-hero__device--primary" src="{{ '/assets/images/evidence/pantry/pantry-home-dark.jpg' | url }}" alt="Pantry inventory overview with an isolated English demo inventory." width="414" height="900" decoding="async" fetchpriority="high">
+    <img class="pantry-product-hero__device pantry-product-hero__device--secondary" src="{{ '/assets/images/evidence/pantry/pantry-item-detail.jpg' | url }}" alt="Pantry item-detail screen for Hand Soap, showing its category, place, quantity, and state." width="414" height="900" decoding="async">
+    <span class="pantry-product-hero__annotation pantry-product-hero__annotation--inventory" aria-hidden="true">Real item hierarchy</span>
+    <span class="pantry-product-hero__annotation pantry-product-hero__annotation--detail" aria-hidden="true">State + action detail</span>
+    <span class="pantry-product-hero__title" aria-hidden="true"><small>02 / Product as artifact</small><strong>Pantry</strong><small>Inventory / Rooms / Actions</small></span>
+  </div>
+  <figcaption id="pantry-product-hero-caption">Authentic Pantry captures from the running iPhone app. No interface reconstruction.</figcaption>
+</figure>
+
 ## I usually start in Figma. This time, I didn't.
 
 I'm a product designer. Normally, when I have an idea for an app, I'd start exploring screens, layouts, and interactions in Figma. But this time, I wanted to try something different.
