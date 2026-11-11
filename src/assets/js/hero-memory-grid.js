@@ -6,9 +6,10 @@
   const canvas = hero?.querySelector(".hero-memory-grid");
   const gsap = window.gsap;
   const pointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const touchQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
   const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const context = canvas?.getContext("2d");
-  if (!hero || !canvas || !context || !gsap || !pointerQuery.matches || motionQuery.matches) return;
+  if (!hero || !canvas || !context || !gsap || !(pointerQuery.matches || touchQuery.matches) || motionQuery.matches) return;
 
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
   const pointer = { x: 0, y: 0, tx: 0, ty: 0, lx: 0, ly: 0, speed: 0, lastMove: 0, entered: false };
@@ -16,6 +17,7 @@
   let columns = 0, rows = 0, cells = [], width = 0, height = 0, dpr = 1;
   let originX = 0, originY = 0;
   let ticking = false, visible = true, lastTime = performance.now();
+  let touchStart = null, touchTrace = false;
 
   function stop() {
     if (!ticking) return;
@@ -24,7 +26,7 @@
   }
 
   function start() {
-    if (ticking || !visible || motionQuery.matches || !pointerQuery.matches) return;
+    if (ticking || !visible || motionQuery.matches || !(pointerQuery.matches || touchQuery.matches)) return;
     lastTime = performance.now();
     gsap.ticker.add(tick);
     ticking = true;
@@ -35,6 +37,7 @@
     cells.forEach(cell => { cell.value = 0; });
     context.clearRect(0, 0, width, height);
     pointer.entered = false;
+    touchTrace = false;
   }
 
   function resize() {
@@ -55,10 +58,10 @@
     stop();
   }
 
-  function illuminate() {
+  function illuminate(radiusLimit) {
     const gx = (pointer.x * width - originX) / pitch - .5;
     const gy = (pointer.y * height - originY) / pitch - .5;
-    const radius = clamp(3.2 - pointer.speed * 1.2, 1.7, 3.2);
+    const radius = radiusLimit ?? clamp(3.2 - pointer.speed * 1.2, 1.7, 3.2);
     const base = clamp(1 - pointer.speed * .24, .6, 1);
     for (let y = Math.max(0, Math.floor(gy - radius)); y <= Math.min(rows - 1, Math.ceil(gy + radius)); y++) {
       for (let x = Math.max(0, Math.floor(gx - radius)); x <= Math.min(columns - 1, Math.ceil(gx + radius)); x++) {
@@ -88,13 +91,13 @@
   }
 
   function tick() {
-    if (!visible || motionQuery.matches || !pointerQuery.matches) { clear(); return; }
+    if (!visible || motionQuery.matches || !(pointerQuery.matches || touchQuery.matches)) { clear(); return; }
     const now = performance.now();
     const dt = clamp((now - lastTime) / 16.667, .25, 3);
     lastTime = now;
     pointer.x += (pointer.tx - pointer.x) * .16;
     pointer.y += (pointer.ty - pointer.y) * .16;
-    if (now - pointer.lastMove < 85) illuminate();
+    if (now - pointer.lastMove < 85) illuminate(touchTrace ? 2.1 : undefined);
     let hasTrace = false;
     const decay = Math.pow(.978, dt);
     cells.forEach(cell => {
@@ -118,13 +121,47 @@
     pointer.ty = y;
     if (!pointer.entered) { pointer.x = x; pointer.y = y; pointer.entered = true; }
     pointer.lastMove = performance.now();
+    touchTrace = false;
     start();
+  }
+
+  function touchAt(event, radius) {
+    const box = canvas.getBoundingClientRect();
+    pointer.x = pointer.tx = clamp((event.clientX - box.left) / box.width, 0, 1);
+    pointer.y = pointer.ty = clamp((event.clientY - box.top) / box.height, 0, 1);
+    pointer.speed = 0;
+    pointer.lastMove = performance.now();
+    touchTrace = true;
+    illuminate(radius);
+    start();
+  }
+
+  function touchDown(event) {
+    if (event.pointerType !== "touch" || !touchQuery.matches || !visible || touchStart) return;
+    touchStart = { id: event.pointerId, x: event.clientX, y: event.clientY, time: performance.now() };
+  }
+
+  function touchMove(event) {
+    if (event.pointerType !== "touch" || !touchStart || !visible || event.pointerId !== touchStart.id) return;
+    touchAt(event, 2.1);
+  }
+
+  function touchEnd(event) {
+    if (event.pointerType !== "touch" || !touchStart || event.pointerId !== touchStart.id) return;
+    const moved = Math.hypot(event.clientX - touchStart.x, event.clientY - touchStart.y);
+    if (moved < 12 && performance.now() - touchStart.time < 600 && visible) touchAt(event, 1.8);
+    touchStart = null;
   }
 
   hero.addEventListener("pointermove", move, { passive: true });
   hero.addEventListener("pointerleave", () => { pointer.entered = false; pointer.lastMove = 0; });
+  hero.addEventListener("pointerdown", touchDown, { passive: true });
+  hero.addEventListener("pointermove", touchMove, { passive: true });
+  hero.addEventListener("pointerup", touchEnd, { passive: true });
+  hero.addEventListener("pointercancel", () => { touchStart = null; }, { passive: true });
   motionQuery.addEventListener("change", () => { clear(); });
   pointerQuery.addEventListener("change", () => { clear(); });
+  touchQuery.addEventListener("change", () => { clear(); });
   window.addEventListener("resize", resize, { passive: true });
   new IntersectionObserver(entries => {
     visible = entries[0].isIntersecting;
