@@ -34,9 +34,11 @@ ogType: article
     </div>
   {% else %}
     <div class="article-grid">
+      {% if not contentProvidesTitle %}
       <aside class="article-aside" aria-label="Project navigation">
         <a class="text-link" href="{{ '/projects/' | url }}">← Back to Projects</a>
       </aside>
+      {% endif %}
       <div class="prose article-prose">
         {{ content | safe }}
       </div>

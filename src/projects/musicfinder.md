@@ -1,7 +1,7 @@
 ---
 layout: layouts/project.njk
-title: I wanted to cancel my Apple Music subscription. Somehow, that turned into building my first AI agent.
-description: I wanted to cancel my Apple Music subscription. Somehow, that turned into building my first AI agent.
+title: Canceling Apple Music Somehow Turned Into My First AI Agent.
+description: Canceling Apple Music somehow turned into Ellie's first AI agent.
 projectLabel: 01 / MusicFinder — My journey into AI agents
 currentPage: projects
 permalink: /projects/musicfinder/
@@ -11,7 +11,7 @@ bodyClass: article-page
 
 {% from "components/story-figure.njk" import evidenceFigure, storyFigure %}
 
-# I wanted to cancel my Apple Music subscription. Somehow, that turned into building my first AI agent.
+# Canceling Apple Music Somehow Turned Into My First AI Agent.
 
 **01 / MusicFinder — My journey into AI agents**
 
@@ -19,139 +19,95 @@ Hi, I'm Ellie! 👋
 
 I'm a product designer who likes making things. Sometimes they're useful. Sometimes they're weird.
 
-Recently, I've been exploring AI agents and how they can help me turn my ideas into actual products.
+Lately, experimenting with AI agents has made those little ideas much easier to explore. Instead of leaving them in my notes, I can turn some of them into things that actually run.
 
-I thought I'd start sharing that journey, beginning with my first experiment: MusicFinder.
+MusicFinder was the first experiment I decided to write about.
 
 ## It started with my music
 
-I wanted to cancel my Apple Music subscription, but there was one problem: my playlists.
+Canceling Apple Music sounded simple until I remembered my playlists. There were a lot of songs I wanted to keep listening to, and YouTube seemed like a reasonable free alternative.
 
-I didn't want to lose all those songs, and since I could listen to music on YouTube for free, I thought I'd just find them there.
+The problem was finding everything again. Searching for each track individually? No, thanks.
 
-But searching for every song individually? No, thanks.
+Around the same time, AI agents had caught my attention. I'd been reading about what they could do, and building one seemed more interesting than spending hours searching for music.
 
-Around the same time, I was curious about AI agents. I'd been reading about what they could do, and I wanted to try making one myself.
-
-So I had an idea.
-
-What if I could take screenshots of my music library, give them to an agent, and have it find the matching songs on YouTube?
+The idea was straightforward: take screenshots of my music library, give them to an agent, and ask it to find matching songs on YouTube.
 
 That's how MusicFinder started.
 
 ## My first agent
 
-Here's something funny: I built MusicFinder without inspecting a single line of code.
+Here's something funny: MusicFinder was built without me inspecting a single line of generated code.
 
-I wasn't trying to learn Python or understand every technical detail. I wanted to learn how to work with agents.
+The goal wasn't to learn Python or understand every implementation detail. I already wanted to explore how people could collaborate with coding agents, so this felt like a useful experiment.
 
-I used ChatGPT to help me think through the problem, prepare instructions, and plan the work. Then I used Codex to build and run the project.
+ChatGPT helped me think through the problem, prepare instructions, and plan each step. Codex worked inside the project, implementing and running the tool. My part was explaining the intended behavior, examining the output, and deciding what needed to change.
 
-My job was to explain what I wanted, test the results, and figure out what needed to change.
-
-And obviously, things didn't work perfectly the first time.
+Naturally, the first attempt didn't go perfectly.
 
 ## 13 screenshots, 13 songs
 
-One of my first tests involved 13 screenshots from my music library.
+One of the first tests used 13 screenshots from my Apple Music library. MusicFinder returned 13 songs.
 
-MusicFinder returned 13 songs.
+That sounded plausible for about a second. Each screenshot contained several tracks, so where had the others gone?
 
-Which sounds reasonable, except each screenshot contained multiple songs!
+The agent had interpreted my instructions as finding one selected song per screenshot rather than extracting every visible song. The code had produced an answer, but not the answer I intended.
 
-The agent had interpreted my instructions as finding one selected song per screenshot instead of extracting every visible song.
+We revised the instructions to extract every readable song, check the expected count, and flag anything uncertain. A later run produced 195 result rows from the same number of screenshots.
 
-So we went back to the instructions.
-
-We made them more specific: extract every readable song, count the expected results, and check whether anything was missing.
-
-Later, we also had to deal with uncertain YouTube matches.
-
-The agent could find a video with the correct title, but that didn't always mean it had found the right song.
-
-So I started checking the links myself.
-
-MusicFinder also provided confidence scores, which helped me identify matches that might need another look.
+Finding a YouTube video was another problem. A matching title didn't necessarily mean it was the right recording, so I began opening the links and listening. Confidence scores helped identify results worth checking more closely.
 
 {% if musicfinderEvidence.libraryScreenshots %}
 {{ evidenceFigure(musicfinderEvidence.libraryScreenshots) }}
 {% endif %}
 
-I wasn't reviewing the code. I was reviewing what the code actually did.
-
-And slowly, I started understanding something about working with agents: explaining what you want is only part of the job. You also need a way to know whether they did it correctly.
+That distinction became one of the biggest lessons of the experiment: a successful run isn't the same as a correct result. Even without reading the implementation code, I still needed a way to judge whether the tool had done the job.
 
 ## Then something unexpected happened
 
-Recently, I opened the original MusicFinder agent again.
-
-I hadn't modified its code for this new task. I was just curious, so I asked:
+Some time later, I opened MusicFinder again without changing its code. Curiosity got the better of me, so I asked a simple question:
 
 **"What can you do?"**
 
-It gave me a list of capabilities. Some were related to music, but others included researching information, creating documents, working with spreadsheets, and even modifying code.
+The response included the music-related features I expected, but also things like research, document creation, spreadsheets, and code modification. Apparently, there was more available to this agent than I'd been using.
 
-That made me curious.
-
-So I typed:
+So I tried something different.
 
 *"can you find the fc 2026 list of music from youtube and then send me a doc of list of musics"*
 
-That was it. One prompt.
-
-And it returned a four-page document containing all 109 songs from the EA SPORTS FC 26 soundtrack.
+That was the entire request. The result was a four-page document containing 109 songs from the EA SPORTS FC 26 soundtrack.
 
 {% if musicfinderEvidence.soundtrackDocument %}
 {{ storyFigure(musicfinderEvidence.soundtrackDocument) }}
 {% endif %}
 
-Artists, song names, a structured table, and clickable YouTube searches.
+The song names and artists were there, arranged in a structured document with clickable YouTube searches. After checking the list, I was happy with the songs themselves, although the links weren't quite what I'd imagined. They opened searches rather than taking me directly to music videos.
 
-I checked the list, and the songs were correct.
+Still, the result surprised me. MusicFinder had started as a tool for recognizing songs in screenshots, and now I was using its available tools to research a soundtrack and create a document.
 
-There was one thing I didn't love: clicking a song opened a YouTube search instead of taking me directly to the actual music video.
-
-So it wasn't exactly what I'd imagined.
-
-But still.
-
-I built this thing to recognize songs from screenshots. And now I was asking it to research an entire soundtrack and create a document for me.
-
-I was genuinely surprised.
+Not bad for an experiment that began with canceling a subscription. :))
 
 ## What I learned
 
-I think the most interesting part of MusicFinder wasn't the code or even the finished tool.
+The most interesting part of MusicFinder wasn't the code or even the finished tool. It was discovering how much of the work involved communicating a problem clearly, setting expectations, and checking the results.
 
-It was realizing how much I could do by learning to work with agents.
+There was no perfect prompt. The process involved wrong assumptions, revised instructions, confidence checks, and plenty of clicking through YouTube links.
 
-I started with a very specific problem. I didn't inspect the code, and I definitely didn't have a perfect workflow.
+Another surprise was that the agent could already do more than I'd originally asked of it. Those additional tools were available; I simply hadn't thought to use them in that way.
 
-I made mistakes, changed instructions, checked results, and gradually learned how to ask for what I actually needed.
-
-And that little agent ended up being useful in ways I hadn't originally planned.
-
-I'm not saying it learned new skills on its own. It already had access to tools that could do more than its original music-related task.
-
-I just hadn't thought to use them that way.
-
-That's probably my favorite discovery from this experiment.
-
-**Sometimes you build something for one reason, and only later discover what else you can do with it.**
+Sometimes a project teaches you something beyond the problem it was supposed to solve.
 
 {% include "content/musicfinder-reflection.md" %}
 
 ## What's next?
 
-MusicFinder was my first experiment, but it made me curious about something bigger.
+MusicFinder began with a small problem and opened up a much bigger question: what else could I build by working this way?
 
-What if I tried building an actual app this way?
+An actual app felt like the next experiment. Something I could design, run on my phone, test in everyday life, and keep improving.
 
-Not just a small agent doing one task, but something I could design, use, improve, and maybe eventually share with other people.
+That experiment became Pantry.
 
-That's where Pantry came in.
-
-And that's the next part of this journey.
+And that's where the next story begins.
 
 *— Ellie*
 

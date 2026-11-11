@@ -10,3 +10,5 @@ references/design/
 npm-debug.log*
 .tmp/
 tmp/
+NIGHT-SHIFT-REVIEW.md
+review-output/

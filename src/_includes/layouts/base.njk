@@ -46,6 +46,7 @@
             {% for item in site.footerNavigation %}
               <li><a href="{{ item.url | url }}">{{ item.label }}</a></li>
             {% endfor %}
+            <li><a href="mailto:{{ site.contactEmail }}">Contact</a></li>
           </ul>
         </nav>
         <p class="copyright">© 2026 Ellie</p>

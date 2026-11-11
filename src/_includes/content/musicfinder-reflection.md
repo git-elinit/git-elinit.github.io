@@ -1,21 +1,15 @@
 ### Did I even need to build MusicFinder?
 
-After writing this story, I got curious about something.
-
-What if I asked a fresh Codex session to do the same thing, without using MusicFinder at all?
+After writing this story, another question came up: what would happen if I gave a fresh Codex session the same task, without MusicFinder?
 
 So I tried it.
 
 And... it worked. :))
 
-Codex found the songs and returned the correct links.
+The fresh session found the songs and returned links. But the output wasn't identical. MusicFinder's screenshot workflow provided structured rows, confidence scores, and direct song links when matches were found. The fresh Codex response used search links instead.
 
-It wasn't quite the same experience, though. MusicFinder gave me a structured table, confidence scores, and direct song links when processing my screenshots. The fresh Codex session returned search links instead.
+That left me wondering whether a dedicated agent was really necessary. I'm still not completely sure.
 
-That made me wonder whether I actually needed a separate agent.
+Maybe the value wasn't teaching AI how to find music. Maybe it was learning how to shape a general-purpose agent into a more predictable workflow for a specific task.
 
-I'm still figuring that out.
-
-But maybe the value wasn't teaching an AI how to find music. It was learning how to turn a general-purpose agent into something more predictable for a specific job.
-
-And even if I could do the same thing with one prompt today, building MusicFinder was how I learned to work with agents in the first place.
+Even if a single prompt could accomplish something similar today, building MusicFinder is how I learned to work with agents in the first place.

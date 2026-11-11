@@ -16,8 +16,16 @@ permalink: /projects/
     {% for project in projects %}
       <li class="project-row">
         <span class="project-index">0{{ loop.index }}</span>
-        <h2><a href="{{ project.url | url }}">{{ project.name }}</a></h2>
-        <span class="status-label">{{ project.type }}</span>
+        <div class="project-row__content">
+          <h2><a href="{{ project.url | url }}">{{ project.name }}</a></h2>
+          <p class="project-row__title">{{ project.title }}</p>
+          <dl class="project-metadata">
+            <div><dt>Type</dt><dd>{{ project.type }}</dd></div>
+            <div><dt>Role</dt><dd>{{ project.role }}</dd></div>
+            <div><dt>Status</dt><dd>{{ project.status }}</dd></div>
+            <div><dt>Key learning</dt><dd>{{ project.learning }}</dd></div>
+          </dl>
+        </div>
       </li>
     {% endfor %}
   </ol>

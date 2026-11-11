@@ -1,6 +1,6 @@
 ---
 layout: layouts/project.njk
-title: "I'm a Product Designer. I Built an iPhone App Without Writing Code or Opening Figma."
+title: "Building an iPhone App Without Writing Code or Opening Figma."
 description: "I'm a product designer. This is how I built Pantry as a real iPhone app with ChatGPT, Codex, visual references, and physical testing."
 projectLabel: 02 / Pantry — Designing with AI agents
 currentPage: projects
@@ -11,7 +11,9 @@ bodyClass: article-page pantry-article-page
 
 {% from "components/pantry-figures.njk" import appFigure, workflowFigure, comparisonFigure, timelineFigure, observationFigure, featureIndex %}
 
-# I'm a Product Designer. I Built an iPhone App Without Writing Code or Opening Figma.
+# Building an iPhone App Without Writing Code or Opening Figma.
+
+<p class="article-story-subtitle">One product designer, ChatGPT, Codex, and a working iPhone app.</p>
 
 *Episode 02 — Pantry / An experiment in designing with ChatGPT and Codex.*
 
@@ -36,27 +38,27 @@ bodyClass: article-page pantry-article-page
 
 ## I usually start in Figma. This time, I didn't.
 
-I'm a product designer. Normally, when I have an idea for an app, I'd start exploring screens, layouts, and interactions in Figma. But this time, I wanted to try something different.
+Most of my work as a product designer starts with screens, layouts, and interactions. Figma is usually where those ideas take shape, but this project began somewhere else.
 
-I had a problem I wanted to solve at home. Instead of opening Figma, I opened ChatGPT and started explaining it. We talked through the idea, generated visual references, and turned decisions into instructions for Codex. Codex worked inside the project, writing the Swift code and implementing the features.
+There was a household problem I wanted to solve, so I opened ChatGPT and started talking about it. We explored the idea, generated visual references, and translated decisions into instructions for Codex. It handled the Swift implementation inside the project while I tested the results on my iPhone.
 
-I tested the results on my iPhone. No Figma files, no manually written implementation code, and definitely not a perfect app on the first try.
+No Figma files, no manually written implementation code, and definitely not a perfect app on the first try.
 
 ## It started with notes on my refrigerator
 
-One of the annoying things about managing a home is remembering everything you need to buy. Do we have eggs? When did I open that bottle of cooking oil? How long does our detergent usually last? How much should I budget for everyday essentials next month?
+Managing a home involves remembering an annoying number of little things. Do we have eggs? When did we open that bottle of cooking oil? How long does the detergent usually last? And how much should we expect to spend on essentials next month?
 
-I used to write reminders on notes around the refrigerator. Before shopping, I'd create another list in messages and send it to friends so we could keep track of what we needed. But I still had no idea how quickly we were using things.
+My system was a collection of notes around the refrigerator. Before shopping, those reminders turned into another list in a messaging app, which I'd send to friends so we could keep track of what we needed.
 
-And until I wrote something down, I had to keep reminding myself not to forget it.
+It worked, sort of. But there was still no clear picture of how quickly things were being used, and anything that hadn't been written down remained something I had to remember.
 
-I wanted one place to keep track of what we owned, what we were using, what needed replacing, and eventually what everyday life was costing us. That's where Pantry started.
+Pantry started with a simple ambition: keep track of what we own, what we're using, what needs replacing, and eventually what everyday household supplies cost us.
 
 {{ appFigure(pantryEvidence.realPantry) }}
 
 ## My little team of three
 
-I didn't just give Codex a giant prompt and ask it to make an app. The workflow became a conversation between three participants.
+The development process wasn't one giant prompt telling Codex to make an entire app. Over time, it became a conversation between three participants, each doing a different kind of work.
 
 **Me:** I decided what we were building, explored ideas, collected references, tested the app, and made product decisions.
 
@@ -64,112 +66,100 @@ I didn't just give Codex a giant prompt and ask it to make an app. The workflow 
 
 **Codex:** The coding agent. It worked inside the repository, implemented features, ran tests, and reported what changed.
 
-Then I opened the app and tried it. If something felt wrong, I'd describe it to my helper. We'd discuss the problem, agree on an approach, and send Codex another task. Sometimes Codex came back with an issue or a question of its own, and that started another discussion.
+Every iteration eventually came back to the phone. I'd try the app, notice friction, and describe what needed attention. My helper and I would discuss the possible approaches before preparing another Codex task. Sometimes Codex returned with its own observations, and we'd work from those too.
 
-It wasn't a perfectly automated system. But it meant I could spend more of my time experiencing the product instead of implementing every screen.
+The process wasn't fully autonomous, but it meant more time could go into experiencing the product and making design decisions instead of personally implementing every screen.
 
 {{ workflowFigure(pantryEvidence.workflow) }}
 
 ## Sometimes a picture is a better prompt
 
-One of my favorite discoveries was how useful visual references could be.
+Visual references became one of the most useful discoveries in this project.
 
-I spent quite a lot of time trying to get Pantry's item cards right. We explored different versions with ChatGPT, generated images, chose a direction, and then created more detailed reference sheets to explain the material, spacing, hierarchy, and behavior.
+Pantry's item cards took quite a few attempts to get right. ChatGPT generated different directions, I compared them, chose what felt appropriate, and we developed detailed reference sheets for the material, spacing, hierarchy, and actions.
 
-At one point, we had an approved glass-card direction with its own material specifications. Those images gave Codex something much more concrete to work from than me repeatedly describing how I imagined a card.
+One approved direction even had its own glass-material specification. That gave Codex something concrete to build from rather than another long description of how I imagined the component.
 
-And the result wasn't an exact copy. The running cards evolved because they needed to show actual item states, quantities, storage information, and actions without becoming cluttered. I liked that. The reference was a starting point, not a screenshot that had to be reproduced pixel for pixel.
+The running result wasn't an exact copy, and that was fine. Real inventory cards had to communicate item states, quantities, storage information, and actions without becoming cluttered. The reference established the direction; using the app shaped the final design.
 
 {{ comparisonFigure(pantryEvidence.cardTranslation) }}
 
-Another example was the Add Item experience. I didn't like the idea of showing a form full of fields where the item name was just as visually important as optional information like an image or price.
+A traditional form could present everything at once—name, category, quantity, price, image, and location—even though those decisions don't have equal importance.
 
-I remembered Apple's Health app and its step-by-step wellbeing logging flow, so I recorded a video of that interaction and sent it to my helper. We used it as a reference for a more guided process: one important decision at a time, with optional details kept out of the way.
+Apple's Health app gave me an idea. Its step-by-step wellbeing flow was easy to understand, so I recorded the interaction and shared the video with my helper. That reference helped us design a more guided process with one primary decision at a time.
 
-Pantry eventually had a four-step entry flow, followed by its own blurred confirmation after saving. That was one of the moments when I realized a short reference video could explain an interaction better than paragraphs of text.
+Pantry eventually used a four-step entry flow and its own blurred confirmation after saving. A short video had communicated the interaction more effectively than paragraphs of written instructions.
 
 {{ comparisonFigure(pantryEvidence.guidedEntry) }}
 
 ## The code worked. The swipe didn't.
 
-Of course, Codex didn't always get everything right.
+Of course, the implementation didn't always match the intended experience.
 
-During one of our item-card redesigns, the swipe actions stopped working correctly. I knew some Swift, so I understood roughly where things might have gone wrong. I initially thought Codex had forgotten to reconnect the previous functionality when changing the interface.
+During an item-card redesign, the swipe actions stopped working correctly. My familiarity with Swift helped me recognize where the problem might be, and my first suspicion was that the previous functionality hadn't been reconnected to the new interface.
 
-I reported the problem to my helper, and we asked Codex to fix it without losing the approved card design. Later, when we investigated the repository history for this article, we found something interesting: the swipe code had actually been there the whole time.
+After reporting it to my helper, we asked Codex to repair the interaction without losing the approved card design. Later, while researching this article, we discovered that the swipe code had actually remained in place.
 
-A custom press effect introduced during the redesign was interfering with the gesture. Codex removed the interfering effect, preserved the visual design, and added focused interaction tests.
+The problem was a custom press effect introduced during the redesign. It interfered with the gesture even though the swipe modifier still existed. Codex removed the conflict, preserved the visual treatment, and added interaction tests.
 
-That incident stayed with me because it explained why I couldn't just ask an agent to build an app from beginning to end and assume everything would work. There's a lot an agent can check in code, but there's also a lot you notice when you actually hold the phone and use the app.
+That incident reinforced something important: code can appear correct while the experience fails in someone's hands.
 
-We had another problem where a button looked perfectly fine, but only its text was tappable, not the surrounding visible area. It's such a small thing, but imagine tapping what looks like a button and nothing happening because your finger missed the title.
+Another small example was a button whose title responded to taps, but whose surrounding visible background didn't. The screen looked fine until a finger landed just outside the text.
 
-Those are the moments where I realized my design experience still mattered.
+Those details are easy to overlook when reviewing static screens. Testing the actual product made them impossible to ignore.
 
 {{ timelineFigure(pantryEvidence.swipeTimeline) }}
 
 ## I wanted the repository to remember things too
 
-Another thing I learned was that writing increasingly detailed prompts wasn't enough.
+As the app grew, longer prompts stopped feeling like a good solution. Every new task depended on decisions we'd already made: approved references, existing interactions, postponed issues, and the reasons behind previous changes.
 
-As Pantry grew, I kept running into decisions we'd already made. Which reference had we approved? How should the item cards behave? What interactions should survive a redesign? What problems had we decided to revisit later?
+Repeating that context to each agent wasn't sustainable. That led to an experiment I called the Living Repository.
 
-I didn't want to explain everything again whenever an agent started working, so I began experimenting with what I called a *Living Repository*.
+The idea was to make the repository useful as project memory, not merely a place where code lived. We documented its vision, current state, handoffs, and future opportunities, then explored ways for agents to identify and record problems more independently.
 
-The idea was simple: the repository shouldn't just contain code. It should contain enough project knowledge to help an agent understand what we were trying to build.
-
-We documented the vision, current state, handoffs, and opportunities. We also started thinking about how agents could identify problems and document them without waiting for me to notice every little thing.
-
-I wanted to explain my intentions once and have the agents work with that context. We're still exploring how autonomous that workflow can become, but one lesson was already clear: if agents are going to work independently, they need to understand the decisions that came before them.
-
-And I still need to be the one making the important product decisions.
+The goal was never to give agents unlimited authority over product decisions. It was to make useful context available so each new task could begin with a better understanding of the work that came before it.
 
 ## Then Codex became a Pantry user
 
-This one happened while preparing screenshots for the article you're reading.
+Something funny happened while we were preparing screenshots for this very article.
 
-I asked Codex to run Pantry in a clean simulator and populate it with sample household items. It needed to enter several items, and instead of repeating the single-item flow, Codex explored the app and found the **Add Multiple** feature we'd built earlier.
+Codex needed a clean simulator filled with generic household items. Instead of entering each item individually, it explored Pantry and discovered the existing Add Multiple feature.
 
-It decided that using that feature was the easiest way to avoid entering everything individually.
+That was the same feature we'd designed to reduce repetitive grocery entry. Now the agent documenting the app had encountered a similar problem and chosen our solution.
 
-I actually laughed when I saw its explanation.
+Seeing its explanation made me laugh. :))
 
-We'd designed Add Multiple because entering groceries one by one was annoying. And now an AI agent, working on a completely different task, had encountered the same friction and chosen our solution.
-
-That was a small but unexpectedly satisfying moment. It doesn't mean every part of Pantry is easy to use, far from it. But seeing something we'd designed become useful to the agent helping document the app? I loved that.
+It wasn't proof that Pantry had become effortless to use. But a design decision had helped with a real task in an unexpected way, and that was a satisfying little moment.
 
 {{ observationFigure(pantryEvidence.quickAdd) }}
 
 ## So, do I actually use Pantry?
 
-Here's the part I don't want to make sound better than it is.
+Here's the part I don't want to make sound better than it is: Pantry hasn't become an app I use as consistently as I'd hoped.
 
-Not as much as I'd hoped.
+For a while, the development build had to be run on my phone repeatedly because the app wasn't on TestFlight. That interruption made everyday use harder.
 
-For a while, I had to keep running the development build on my phone because the app wasn't on TestFlight. That interrupted the experience.
+The bigger challenge was maintenance. A household produces a surprising number of inventory changes. Buying items, entering them, updating quantities, marking things as in use, and recording when they finish takes effort—even with Quick Add.
 
-And there's another problem: I buy a lot of things. Even with Add Multiple, keeping every item and its state accurate takes effort. Buying something, entering it, updating its quantity, marking it as in use or finished—it adds up.
+An app created to reduce things I had to remember was sometimes becoming another thing to remember.
 
-I originally built Pantry to help me remember things, but sometimes maintaining the app became another thing to remember.
+That didn't make the experiment disappointing. Alongside the product work, I was learning how to collaborate with agents, communicate through references, test real software, and preserve project knowledge in a repository.
 
-I wasn't disappointed, though. The entire project was also an experiment in learning how to build with agents. I learned how to communicate through references, how to organize agent work, how to test real software, and how to improve a repository so agents could understand it better.
+Then Pixelog changed how I thought about the problem. Its interaction was much simpler: write a short log and let the app organize information around it. Using that approach felt more natural than manually changing every inventory state.
 
-I got a lot out of it, and I still love the idea of Pantry.
+Now I'm wondering whether Pantry could work in a similar way. Instead of finding eggs and milk individually, perhaps I could simply write "Bought eggs and milk" and let the app suggest the appropriate updates. Siri could eventually make those little records even easier.
 
-Later, I built another app called Pixelog. Its interaction was much simpler: write a short log and let the app organize information around it. I started enjoying that approach so much that it changed how I thought about Pantry.
-
-Maybe I shouldn't have to find an item, open its details, and manually change its state every time. Maybe I should be able to write something like “Bought eggs and milk,” and let Pantry suggest the appropriate inventory updates—or use Siri to record something while I'm putting groceries away.
-
-Those are ideas for the next version, not features I've finished building. But they're making me excited to return to the project.
+Those are future ideas, not features Pantry already has. But they're making me excited to return to it.
 
 {{ featureIndex(pantryFeatures) }}
 
 ## What this changed for me as a designer
 
-I didn't build Pantry to prove that designers don't need developers, and I don't think AI replaces the knowledge needed to build reliable software. But this project changed the way I think about turning an idea into something real.
+Pantry wasn't built to prove that product designers no longer need developers. Reliable software still requires technical knowledge, careful engineering, and testing. What changed was my understanding of how directly I could participate in building it.
 
-I could start with a problem instead of a Figma file, use words, reference images, and videos to explain what I wanted, and let Codex handle the implementation while I tested the actual experience.
+A problem could become a conversation, a visual reference, a working implementation, and something I could test on my own phone. Codex handled the implementation while I spent more of my time making product decisions and evaluating the experience.
 
-Sometimes the agent noticed things I hadn't thought of. Other times, I caught things the agent missed. That's why I don't think the interesting part is simply that AI wrote the code. It's that I could spend more time understanding how the product actually worked.
+Sometimes an agent noticed something I'd missed. Other times, I caught details the agent hadn't considered. The important part wasn't simply that AI wrote the code; it was the feedback loop between an actual product and the people and tools building it.
 
-Pantry isn't finished, and I don't know exactly what its next version will look like. But I know I'd approach building it differently now, and that alone made the experiment worth doing.
+Pantry still has plenty of room to improve. But the experiment has already changed how I'd approach another app, and that alone made it worth doing.
