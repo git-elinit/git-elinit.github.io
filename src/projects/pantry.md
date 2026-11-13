@@ -2,6 +2,7 @@
 layout: layouts/project.njk
 title: "Building an iPhone App Without Writing Code or Opening Figma."
 description: "I'm a product designer. This is how I built Pantry as a real iPhone app with ChatGPT, Codex, visual references, and physical testing."
+socialImage: https://git-elinit.github.io/assets/images/social/pantry-social.png
 projectLabel: 02 / Pantry — Designing with AI agents
 currentPage: projects
 permalink: /projects/pantry/
