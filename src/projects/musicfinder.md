@@ -116,3 +116,8 @@ And that's where the next story begins.
   <strong>Want to try MusicFinder?</strong>
   <span class="project-source-card__arrow" aria-hidden="true">↗</span>
 </a>
+
+<nav class="chapter-connection" aria-label="Continue the MusicFinder story">
+  <span class="chapter-connection__label">MusicFinder / Chapter 02</span>
+  <a href="{{ '/projects/musicfinder/gta-vi/' | url }}">GTA VI Soundtrack: 57 Direct YouTube Music Links <span aria-hidden="true">↗</span></a>
+</nav>
