@@ -7,7 +7,11 @@ export default [
     status: "Public repository · Experiment documented",
     learning: "Clear instructions and trustworthy results matter more than a successful run alone.",
     title: "Canceling Apple Music Somehow Turned Into My First AI Agent.",
-    summary: "A personal problem, 13 screenshots, a lot of trial and error, and an unexpected 109-song result."
+    summary: "A personal problem, 13 screenshots, a lot of trial and error, and an unexpected 109-song result.",
+    stories: [
+      { label: "Episode 01", title: "Canceling Apple Music Somehow Turned Into My First AI Agent.", url: "/projects/musicfinder/" },
+      { label: "Chapter 02", title: "GTA VI Soundtrack: 57 Direct YouTube Music Links", url: "/projects/musicfinder/gta-vi/" }
+    ]
   },
   {
     name: "Pantry",

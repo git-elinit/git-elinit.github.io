@@ -18,7 +18,15 @@ permalink: /projects/
         <span class="project-index">0{{ loop.index }}</span>
         <div class="project-row__content">
           <h2><a href="{{ project.url | url }}">{{ project.name }}</a></h2>
-          <p class="project-row__title">{{ project.title }}</p>
+          {% if project.stories %}
+            <ol class="project-stories" aria-label="MusicFinder stories">
+              {% for story in project.stories %}
+                <li><a href="{{ story.url | url }}"><span>{{ story.label }}</span><strong>{{ story.title }}</strong><span aria-hidden="true">↗</span></a></li>
+              {% endfor %}
+            </ol>
+          {% else %}
+            <p class="project-row__title">{{ project.title }}</p>
+          {% endif %}
           <dl class="project-metadata">
             <div><dt>Type</dt><dd>{{ project.type }}</dd></div>
             <div><dt>Role</dt><dd>{{ project.role }}</dd></div>
